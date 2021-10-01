@@ -109,7 +109,7 @@ public class MutantService {
         //diagonales de derecha a izq desde fila 0
         for (int i = 3; i < dimension; i++) {
             contador = 0;
-            if (cantTrue >= 2 || contador > 3) {
+            if (cantTrue >= 2) {
                 return true;
             }
             for (int j = i; j > 0; j--) {
@@ -121,7 +121,7 @@ public class MutantService {
                 }
                 if (contador == 3) {
                     cantTrue++;
-                    contador = 0;
+                   // contador = 0;
                     break;
                 }
 
@@ -132,7 +132,7 @@ public class MutantService {
         for (int i = 1; i < dimension - 3; i++) {
             letra = matriz[dimension - 1][i];
             contador = 0;
-            if (cantTrue >= 2 || contador > 3) {
+            if (cantTrue >= 2) {
                 return true;
             }
             for (int j = i; j < ((dimension - i)); j++) {
@@ -144,7 +144,7 @@ public class MutantService {
                 }
                 if (contador == 3) {
                     cantTrue++;
-                    contador = 0;
+                  //  contador = 0;
                     break;
                 }
 
