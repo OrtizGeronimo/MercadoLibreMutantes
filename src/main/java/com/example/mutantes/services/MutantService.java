@@ -6,16 +6,15 @@ import com.example.mutantes.repositories.MutantRepository;
 
 @Service
 public class MutantService {
-
+/*
     @Autowired
     private MutantRepository mutantRepository;
 
     public MutantService(MutantRepository mutantRepository) {
         this.mutantRepository = mutantRepository;
     }
-
+*/
     public boolean isMutant(String[] dna) {
-
         int cantTrue = 0;
         String letra;
         int dimension = dna.length;
@@ -25,13 +24,9 @@ public class MutantService {
         String letraB;
         int contadorA;
         int contadorB;
-
         //comprobamos verticales
-        for (int i = 0; i < dimension - 3; i++) {
+        for (int i = 0; i < dimension-3; i++) {
             //verticales
-            if (cantTrue >= 2) {
-                return true;
-            }
             loop:
             for (int j = 0; j < dimension; j++) {
                 letra = matriz[i][j];
@@ -42,11 +37,14 @@ public class MutantService {
                         }
                         if (k == (i + 3)) {
                             cantTrue++;
+
                             break loop;
                         }
                     }
                 }
-
+            }
+            if (cantTrue >= 2) {
+                return true;
             }
             // diagonales
             contadorA = 0;
@@ -80,10 +78,7 @@ public class MutantService {
                 }
             }
         }
-
-
         //horizontales
-
         String[] condicion = {"AAAA", "TTTT", "CCCC", "GGGG"};
         int firstIndex;
         for (String cadenaAux : dna) {
@@ -102,10 +97,7 @@ public class MutantService {
                 } while (firstIndex != -1);
             }
         }
-
-
         int contador;
-
         //diagonales de derecha a izq desde fila 0
         for (int i = 3; i < dimension; i++) {
             contador = 0;
@@ -124,38 +116,29 @@ public class MutantService {
                    // contador = 0;
                     break;
                 }
-
             }
         }
-
         //diagonales de derecha a izq desde fila maxima
         for (int i = 1; i < dimension - 3; i++) {
             letra = matriz[dimension - 1][i];
             contador = 0;
-            if (cantTrue >= 2) {
-                return true;
-            }
-            for (int j = i; j < ((dimension - i)); j++) {
-                if (letra.equals(matriz[dimension - j - 1][j + 1])) {
+             for (int j = 1; j < ((dimension - i)); j++) {
+                if (letra.equals(matriz[dimension - j - 1][j + i])) {
                     contador++;
                 } else {
-                    letra = matriz[dimension - j - 1][j + 1];
+                    letra = matriz[dimension - j - 1][j + i];
                     contador = 0;
                 }
                 if (contador == 3) {
                     cantTrue++;
-                  //  contador = 0;
+                    if (cantTrue >= 2){
+                        return true;
+                    }
                     break;
                 }
-
             }
         }
-
-
-        //System.out.println(cantTrue);
         return false;
-
-
     }
     public void rellenarMatriz(String[] dna, String[][] matriz) {
         for (int i = 0; i < dna.length; i++) {
@@ -163,16 +146,5 @@ public class MutantService {
                 matriz[i][j] = Character.toString(dna[i].charAt(j));
             }
         }
-        /*
-        for (int i = 0; i < dna.length; i++) {
-            for (int j = 0; j < dna.length; j++) {
-                System.out.print(matriz[i][j]);
-            }
-            System.out.println();
-        }
-        */
-
     }
-
-
 }
