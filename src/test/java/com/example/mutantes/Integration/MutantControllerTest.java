@@ -26,7 +26,6 @@ public class MutantControllerTest {
     @Test
     public void testMutante() throws Exception{
 
-
             mockMvc.perform(post("/apiMutants/v1/mutant")
                     .content("{\"dna\": [\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAGG\",\"CCCCTA\",\"TCACTG\"]}")
                     .contentType(MediaType.APPLICATION_JSON))
