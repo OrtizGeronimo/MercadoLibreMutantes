@@ -22,8 +22,10 @@ public class Mutant {
 
     private boolean isMutant;
 
-    @ElementCollection
+    @Transient
     private List<String> dna;
 
+    @Lob
+    private String dnaPersistido;
 
 }

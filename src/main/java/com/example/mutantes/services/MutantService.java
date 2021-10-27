@@ -24,10 +24,12 @@ public class MutantService {
         boolean resultado = this.isMutant(dna);
         if (resultado){
             m.setMutant(true);
+            m.setDnaPersistido(dna.toString());
             mutantRepository.save(m);
             return true;
         } else {
             m.setMutant(false);
+            m.setDnaPersistido(dna.toString());
             mutantRepository.save(m);
             return false;
         }
