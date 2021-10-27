@@ -18,13 +18,22 @@ public class MutantController {
     @PostMapping("")
     public ResponseEntity<?> comprobarAdn(@RequestBody Mutant m) {
         try {
-            if (service.isMutant(m.getDna())) {
+            if (service.comprobarMutante(m)) {
                 return ResponseEntity.status(HttpStatus.OK).body("");
             } else {
                 throw new Exception();
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("");
+        }
+    }
+
+    @GetMapping("/stats")
+    public ResponseEntity<?> getCount(){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.getCount());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("");
         }
     }
 

@@ -1,11 +1,13 @@
 package com.example.mutantes.repositories;
 
-import org.springframework.stereotype.Component;
+import com.example.mutantes.domain.Mutant;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
 
 //@Component
 @Repository
-public class MutantRepository {
+public interface MutantRepository extends JpaRepository<Mutant, Long> {
 
 
 }

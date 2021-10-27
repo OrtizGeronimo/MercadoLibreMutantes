@@ -1,19 +1,57 @@
 package com.example.mutantes.services;
 
+import com.example.mutantes.domain.Mutant;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.mutantes.repositories.MutantRepository;
 
+import java.util.List;
+
 @Service
 public class MutantService {
-/*
+
     @Autowired
     private MutantRepository mutantRepository;
 
     public MutantService(MutantRepository mutantRepository) {
         this.mutantRepository = mutantRepository;
     }
-*/
+
+    public boolean comprobarMutante(Mutant m){
+        String[] dna = new String[m.getDna().size()];
+        dna = m.getDna().toArray(dna);
+        boolean resultado = this.isMutant(dna);
+        if (resultado){
+            m.setMutant(true);
+            mutantRepository.save(m);
+            return true;
+        } else {
+            m.setMutant(false);
+            mutantRepository.save(m);
+            return false;
+        }
+
+    }
+
+    public Object getCount(){
+        List<Mutant> mutantes = mutantRepository.findAll();
+        double count_mutant = 0;
+        double count_human = mutantes.size();
+        double ratio = 0;
+        for (Mutant mutant: mutantes) {
+            if (mutant.isMutant()){
+                count_mutant++;
+            }
+        }
+        ratio = count_mutant/count_human;
+        JSONObject json = new JSONObject();
+        json.put("count_mutant_dna", count_mutant);
+        json.put("count_human_dna", count_human);
+        json.put("ratio", ratio);
+        return json;
+    }
+
     public boolean isMutant(String[] dna) {
         int cantTrue = 0;
         String letra;
