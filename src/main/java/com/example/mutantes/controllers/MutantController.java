@@ -37,4 +37,9 @@ public class MutantController {
         }
     }
 
+    @GetMapping("")
+    public ResponseEntity<?> get(){
+        return ResponseEntity.status(HttpStatus.OK).body("");
+    }
+
 }
