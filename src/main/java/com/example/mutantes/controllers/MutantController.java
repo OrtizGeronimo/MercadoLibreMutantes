@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.mutantes.services.MutantService;
 
 @RestController
-@RequestMapping(path = "apiMutants/v1/mutant")
+@RequestMapping(path = "/apiMutants/v1/mutant")
 @CrossOrigin(origins = "*")
 public class MutantController {
 
