@@ -22,18 +22,10 @@ public class MutantService {
         String[] dna = new String[m.getDna().size()];
         dna = m.getDna().toArray(dna);
         boolean resultado = this.isMutant(dna);
-        if (resultado){
-            m.setMutant(true);
-            m.setDnaPersistido(dna.toString());
-            mutantRepository.save(m);
-            return true;
-        } else {
-            m.setMutant(false);
-            m.setDnaPersistido(dna.toString());
-            mutantRepository.save(m);
-            return false;
-        }
-
+        m.setMutant(resultado);
+        m.setDnaPersistido(dna.toString());
+        mutantRepository.save(m);
+        return resultado;
     }
 
     public Object getCount(){
